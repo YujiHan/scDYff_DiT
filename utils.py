@@ -11,6 +11,8 @@ def save_log_file(log_list, dataset):
 
     with open(file_path, 'wb') as f:
         pickle.dump(log_list, f)
+    # with open(file_path, 'rb') as f:
+    #     loaded_list = pickle.load(f)
 
 
 # 保存模型参数
