@@ -252,7 +252,13 @@ class DiT_stDiff(nn.Module):
         nn.init.constant_(self.out_layer.linear.weight, 0)
         nn.init.constant_(self.out_layer.linear.bias, 0)
 
-    def forward(self, x, t, **kwargs):
+    def forward(self, x=None, t=None, x0=None, x2=None, mode='forcast', **kwargs):
+        if mode == 'forcast':
+            x = x
+        else:
+            # x = torch.cat((x0, x2), dim=1)
+            x = torch.cat((x0, x2), dim=-1)
+
         x = x.float()
         c = self.time_emb(t)
 
